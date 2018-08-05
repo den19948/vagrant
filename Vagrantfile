@@ -4,7 +4,7 @@
 
 Vagrant.configure(2) do |config|
 config.vm.define "Apache2" do |web_config|
- web_config.vm.box = "ubuntu/trusty64"
+ web_config.vm.box = "ubuntu_14_04_basebox"
 
    web_config.vm.network "private_network", ip: "192.168.33.10"
 
@@ -15,8 +15,7 @@ config.vm.define "Apache2" do |web_config|
 	sudo add-apt-repository ppa:ondrej/php
 	sudo apt-get update
 	sudo apt-get install -y python-software-properties software-properties-common
-	sudo apt-get install -y php php-mysql
-	sudo apt-get install -y mysql-client
+	sudo apt-get install -y  php5-mysql php5-curl php5-json php5-cgi  php5 libapache2-mod-php5
 	mkdir wp
 	cd wp/
 	wget https://ru.wordpress.org/wordpress-4.9.8-ru_RU.tar.gz
@@ -32,7 +31,7 @@ config.vm.define "Apache2" do |web_config|
    SHELL
 end
 config.vm.define :db do |db_config|
-db_config.vm.box = "ubuntu/trusty64"
+db_config.vm.box = "ubuntu_14_04_basebox"
 db_config.vm.network "private_network", ip: "192.168.33.21"
 
 db_config.vm.provision "shell", inline: <<-SHELL
